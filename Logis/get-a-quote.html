@@ -86,55 +86,53 @@
             <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <h3>Get a quote</h3>
               <p>Get a personalized quote designed to meet your unique needs and specifications, ensuring a solution that perfectly aligns with your expectations.</p>
-
+          
               <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="departure" class="form-control" placeholder="City of Departure" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required="">
-                </div>
-
-                <div class="col-lg-12">
-                  <h4>Your Personal Details</h4>
-                </div>
-
-                <div class="col-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name" required="">
-                </div>
-
-                <div class="col-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                </div>
-
-                <div class="col-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required="">
-                </div>
-
-                <div class="col-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your quote request has been sent successfully. Thank you!</div>
-
-                  <button type="submit">Get a quote</button>
-                </div>
-
+                  <div class="col-md-6">
+                      <input type="text" name="departure" class="form-control" placeholder="City of Departure" required="">
+                  </div>
+          
+                  <div class="col-md-6">
+                      <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required="">
+                  </div>
+          
+                  <div class="col-md-6">
+                      <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required="">
+                  </div>
+          
+                  <div class="col-md-6">
+                      <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required="">
+                  </div>
+          
+                  <div class="col-lg-12">
+                      <h4>Your Personal Details</h4>
+                  </div>
+          
+                  <div class="col-12">
+                      <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                  </div>
+          
+                  <div class="col-12 ">
+                      <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                  </div>
+          
+                  <div class="col-12">
+                      <input type="text" class="form-control" name="phone" placeholder="Phone" required="">
+                  </div>
+          
+                  <div class="col-12">
+                      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  </div>
+          
+                  <div class="col-12 text-center">
+                      <div class="loading" style="display: none;">Loading...</div>
+                      <div class="error-message" style="display: none; color: red;"></div>
+                      <div class="sent-message" style="display: none; color: green;">Your quote request has been sent successfully. Thank you!</div>
+          
+                      <button type="submit">Get a quote</button>
+                  </div>
               </div>
-            </form>
+          </form>
           </div><!-- End Quote Form -->
 
         </div>
@@ -214,25 +212,22 @@
   <!-- Preloader -->
   <div id="preloader"></div>
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
     
-        // Get form values
-        const name = this.name.value;
-        const email = this.email.value;
-        const subject = this.subject.value;
-        const message = this.message.value;
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from reloading the page
     
-        // Here you can add code to handle the data, like sending it to a server
-        console.log("Form submitted!", { name, email, subject, message });
+            // Clear text in the form fields
+            const inputs = form.querySelectorAll("input, textarea");
+            inputs.forEach(function (input) {
+                input.value = ""; // Clear the value of the input/textarea field
+            });
     
-        // Show the success message and hide the loading/error messages
-        document.querySelector('.sent-message').style.display = 'block';
-        document.querySelector('.loading').style.display = 'none';
-        document.querySelector('.error-message').style.display = 'none';
-    
-        // Reset the form fields
-        this.reset();
+            // Show success message
+            const sentMessage = document.querySelector(".sent-message");
+            sentMessage.style.display = "block";
+        });
     });
     </script>
 
